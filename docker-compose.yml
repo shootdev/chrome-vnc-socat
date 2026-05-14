@@ -1,0 +1,79 @@
+services:
+
+  chrome-vnc-socat-latest:
+    build:
+        context: .
+        dockerfile: ./chrome-vnc-socat-latest/Dockerfile
+    ports:
+      - "5900:5900"
+      - "9222:9222"
+    image: "chrome-vnc-socat"
+
+  chrome-vnc-socat-134:
+    build:
+        context: .
+        dockerfile: ./chrome-vnc-socat-134/Dockerfile
+    ports:
+      - "5900:5900"
+      - "9222:9222"
+      - "8900:8900"
+    image: "chrome-vnc-socat"
+
+  chrome-only:
+    build:
+        context: .
+        dockerfile: ./chrome-only/Dockerfile
+    image: "chrome-only:latest"
+
+  chrome:
+    container_name: chrome
+    shm_size: '2g'
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+      - "7900:7900"
+    volumes:
+    - "${HOME}/Downloads:/home/Downloads:rw"
+    - "${HOME}/Downloads/copyables:/home/Downloads/copyables:rw"
+    environment:
+      TZ: "Asia/Shanghai"
+      SE_NODE_SESSION_TIMEOUT: 1200
+      SE_SESSION_REQUEST_TIMEOUT: 15
+      SE_VIDEO_RECORD_STANDALONE: "false"
+    image: "selenium/standalone-chrome:124.0-20250606"
+
+  firefox:
+    container_name: firefox
+    shm_size: '2g'
+    ports:
+      - "4445:4444"
+      - "5901:5900"
+      - "7901:7900"
+    volumes:
+    - "${HOME}/Downloads:/home/Downloads:rw"
+    - "${HOME}/Downloads/copyables:/home/Downloads/copyables:rw"
+    environment:
+      TZ: "Asia/Shanghai"
+      SE_NODE_SESSION_TIMEOUT: 1200
+      SE_SESSION_REQUEST_TIMEOUT: 15
+      SE_VIDEO_RECORD_STANDALONE: "false"
+    image: "selenium/standalone-firefox:141.0-20251212"
+
+  cdp:
+    container_name: cdp
+    shm_size: '2g'
+    ports:
+      - "9222:9222"
+      - "5902:5900"
+      - "8900:8900"
+    volumes:
+    - "${HOME}/Downloads:/home/Downloads:rw"
+    - "${HOME}/Downloads/copyables:/home/Downloads/copyables:rw"
+    - "../:/home/Chrome/TaxServices:rw"
+    - "${HOME}/Downloads/extensions/proxy_extension_9222:/proxy_extension:rw"
+    environment:
+      TZ: "Asia/Shanghai"
+      SE_NODE_SESSION_TIMEOUT: 1200
+      SE_SESSION_REQUEST_TIMEOUT: 15
+      SE_VIDEO_RECORD_STANDALONE: "false"
+    image: "chrome-vnc-socat:latest"
