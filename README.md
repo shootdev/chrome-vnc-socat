@@ -65,7 +65,7 @@ docker compose up -d cdp
 ### 拉取镜像
 
 ```bash
-docker pull <dockerhub-username>/chrome-vnc-socat:latest
+docker pull weiensong/chrome-vnc-socat:latest
 ```
 
 ### 查看容器日志

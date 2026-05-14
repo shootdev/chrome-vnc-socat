@@ -76,4 +76,4 @@ services:
       SE_NODE_SESSION_TIMEOUT: 1200
       SE_SESSION_REQUEST_TIMEOUT: 15
       SE_VIDEO_RECORD_STANDALONE: "false"
-    image: "chrome-vnc-socat:latest"
+    image: "weiensong/chrome-vnc-socat:latest"
