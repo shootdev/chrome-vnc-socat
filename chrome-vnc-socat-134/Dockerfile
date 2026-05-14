@@ -28,11 +28,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
 
 RUN pip3 install --no-cache-dir websockify -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
-# RUN git clone https://github.com/novnc/noVNC.git /noVNC && \
-#    git clone https://github.com/novnc/websockify.git /noVNC/utils/websockify
+RUN git clone https://github.com/novnc/noVNC.git /noVNC && \
+   git clone https://github.com/novnc/websockify.git /noVNC/utils/websockify
 
-RUN git clone https://gitee.com/ren-chengchengren/noVNC.git /noVNC && \
-    git clone https://gitee.com/mirrors/websockify.git /noVNC/utils/websockify
+# RUN git clone https://gitee.com/ren-chengchengren/noVNC.git /noVNC && \
+#     git clone https://gitee.com/mirrors/websockify.git /noVNC/utils/websockify
 
 RUN ln -s /noVNC/vnc.html /noVNC/index.html
 
