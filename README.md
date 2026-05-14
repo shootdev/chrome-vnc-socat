@@ -14,15 +14,14 @@
 
 ### 本地构建
 
-[!CAUTION]
+> [!CAUTION]
 > 必须在仓库根目录执行
 
-[!NOTE]
+> [!NOTE]
 > 网络问题请尝试使用注释换掉的源
 
 ```bash
-docker build -t chrome-vnc-socat:latest \
-  -f chrome-vnc-socat-134/Dockerfile .
+docker compose build chrome-vnc-socat-134 --no-cache
 ```
 
 ### 本地运行
@@ -59,11 +58,6 @@ docker compose up -d cdp
 
 - `DOCKERHUB_USERNAME`：Docker Hub 用户名
 - `DOCKERHUB_TOKEN`：Docker Hub Access Token
-
-#### Variables（可选）
-
-- `DOCKERHUB_IMAGE_NAME`：完整镜像名（例如 `yourname/chrome-vnc-socat`）
-
 ---
 
 ## 常见操作
@@ -89,11 +83,12 @@ docker exec -it cdp /bin/bash
 ---
 
 ## 注意事项
-1. `chrome-vnc-socat-134/Dockerfile` 使用了仓库内 `copyables/` 的资源（脚本、deb 包等），构建上下文必须是仓库根目录 `.`。
-2. GitHub Action 也使用 `context: .`，与本地构建保持一致，避免因上下文错误导致 `COPY` 失败。
-3. Chrome 在构建时会直接下载固定 deb：`https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/google-chrome-stable_134.0.6998.88-1_amd64.deb`。
-4. 如果你更新了 Chrome 安装包或相关脚本，工作流会自动触发重新构建。
-5. 首次推送前请确认 Docker Hub 仓库已创建，且 Token 具备推送权限。
+> [!TIP]
+> 1. `chrome-vnc-socat-134/Dockerfile` 使用了仓库内 `copyables/` 的资源（脚本、deb 包等），构建上下文必须是仓库根目录 `.`。
+> 2. GitHub Action 也使用 `context: .`，与本地构建保持一致，避免因上下文错误导致 `COPY` 失败。
+> 3. Chrome 在构建时会直接下载固定 deb：`https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/google-chrome-stable_134.0.6998.88-1_amd64.deb`。
+> 4. 如果你更新了 Chrome 安装包或相关脚本，工作流会自动触发重新构建。
+> 5. 首次推送前请确认 Docker Hub 仓库已创建，且 Token 具备推送权限。
 
 ---
 
