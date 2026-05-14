@@ -1,0 +1,3 @@
+copyables/proxy_extension/** linguist-detectable=false
+copyables/reload_extensions/** linguist-detectable=false
+copyables/singlefile_extension/** linguist-detectable=false
