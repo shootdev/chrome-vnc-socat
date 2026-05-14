@@ -6,8 +6,8 @@ ENV LANG C.UTF-8
 
 COPY copyables /
 
-RUN sed -i 's#http://.*ubuntu.com#http://mirrors.aliyun.com#g' /etc/apt/sources.list && apt-get update
-# RUN apt-get update
+# RUN sed -i 's#http://.*ubuntu.com#http://mirrors.aliyun.com#g' /etc/apt/sources.list && apt-get update
+RUN apt-get update
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
   && DEBIAN_FRONTEND=noninteractive \
