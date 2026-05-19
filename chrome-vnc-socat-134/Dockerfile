@@ -36,10 +36,12 @@ RUN git clone https://github.com/novnc/noVNC.git /noVNC && \
 
 RUN ln -s /noVNC/vnc.html /noVNC/index.html
 
-RUN curl -fsSL "https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/google-chrome-stable_134.0.6998.88-1_amd64.deb" -o /tmp/google-chrome-stable_134.0.6998.88-1_amd64.deb \
- && dpkg -i /tmp/google-chrome-stable_134.0.6998.88-1_amd64.deb \
- || dpkg -i /chrome_remote_desktop.deb \
- || DEBIAN_FRONTEND=noninteractive apt-get -f --yes install
+# RUN curl -fsSL "https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/google-chrome-stable_134.0.6998.88-1_amd64.deb" -o /tmp/google-chrome-stable.deb \
+RUN curl -fsSL "https://github.com/shootdev/chrome-vnc-socat/releases/download/134/google_chrome_134_0_6998_88.deb" -o /tmp/google-chrome-stable.deb  && \
+    curl -fsSL "https://github.com/shootdev/chrome-vnc-socat/releases/download/134/chrome_remote_desktop_138_0_7204_6.deb" -o /tmp/chrome_remote_desktop.deb  \
+    && dpkg -i /tmp/google-chrome-stable.deb \
+    || dpkg -i /tmp/chrome_remote_desktop.deb \
+    || DEBIAN_FRONTEND=noninteractive apt-get -f --yes install
 
 RUN apt-get clean \
   && rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/* /chrome_remote_desktop.deb /google_chrome_134.deb* \
