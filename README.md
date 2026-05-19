@@ -1,12 +1,22 @@
 # chrome-vnc-socat
 
-一个用于运行 **Chrome + VNC + noVNC + socat** 的 Docker 项目，方便远程可视化调试浏览器、容器内自动化任务以及通过 9222 暴露 DevTools 协议。
+构建可视化, 可调试的Chrome Docker Image, 实现通过端口暴露cdp协议
 
 本仓库包含多个镜像版本，其中重点是：
 
 - chrome-vnc-socat-134: 固定版本Chrome版本134.0.6998.88的构建, 当前主要维护
 - chrome-vnc-socat-latest: 偏向最新版本的构建
 - chrome-only: 仅安装 Chrome 的最小镜像
+
+镜像包含:
+- [supervisor](https://github.com/Supervisor/supervisor)
+- [socat](http://www.dest-unreach.org/socat/)
+- [noVNC](https://github.com/novnc/noVNC)
+- [chrome](https://www.google.com/chrome/)
+- [chrome-remote-desktop](https://remotedesktop.google.com/support/)
+- [chrome代理插件](./copyables/proxy_extension/)
+- [singlefile](https://github.com/gildas-lormeau/SingleFile)
+- [chrome-extensions-reloader](https://github.com/arikw/chrome-extensions-reloader)
 
 ## 快速开始
 请检查[docker-compose.yml](./docker-compose.yml)
