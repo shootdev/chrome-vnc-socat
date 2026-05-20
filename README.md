@@ -66,6 +66,9 @@ docker logs -f cdp
 docker exec -it cdp /bin/bash
 ```
 
+### 使用noVNC查看
+[http://127.0.0.1:8900/?autoconnect=1&password=secret&resize=scale&null](http://127.0.0.1:8900/?autoconnect=1&password=secret&resize=scale&null)
+
 
 ## 注意事项
 > [!TIP]
