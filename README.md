@@ -40,6 +40,8 @@ docker compose build chrome-vnc-socat-134 --no-cache
 docker compose up -d cdp
 ```
 
+`CHROME_OPTS_EXTRA`: 设置chrome启动环境变量
+
 ## GitHub Action：自动构建并推送配置
 
 - `DOCKERHUB_USERNAME`：Docker Hub username
