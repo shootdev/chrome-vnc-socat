@@ -36,7 +36,7 @@ export VNC_SCREEN="${SCREEN_WIDTH}x${SCREEN_HEIGHT}x24"
 export CHROME_WINDOW_SIZE="${SCREEN_WIDTH},${SCREEN_HEIGHT}"
 
 # 使用--remote-debugging-port必须制定默认路径外的路径： https://developer.chrome.com/blog/remote-debugging-port?hl=zh-cn
-CHROME_OPTS_DEFAULT="--user-data-dir=/tmp/chrome_user_data_dir --system-developer-mode --no-sandbox --remote-debugging-port=9922 --remote-debugging-address=0.0.0.0 --remote-allow-origins=* --load-extension=/proxy_extension,/reload_extensions,/singlefile_extension"
+CHROME_OPTS_DEFAULT="--user-data-dir=/tmp/chrome_user_data_dir --no-first-run --test-type --system-developer-mode --no-sandbox --remote-debugging-port=9922 --remote-debugging-address=0.0.0.0 --remote-allow-origins=* --load-extension=/proxy_extension,/reload_extensions,/singlefile_extension"
 
 # 兼容旧变量 CHROME_OPTS_OVERRIDE，同时支持：
 # 1) CHROME_OPTS       完全覆盖参数
