@@ -31,12 +31,28 @@ chown chrome:chrome /home/chrome/.config
 
 # set sizes for both VNC screen & Chrome window
 : ${VNC_SCREEN_SIZE:='1920x1080'}
-IFS='x' read SCREEN_WIDTH SCREEN_HEIGHT <<< "${VNC_SCREEN_SIZE}"
+IFS='x' read SCREEN_WIDTH SCREEN_HEIGHT <<<"${VNC_SCREEN_SIZE}"
 export VNC_SCREEN="${SCREEN_WIDTH}x${SCREEN_HEIGHT}x24"
 export CHROME_WINDOW_SIZE="${SCREEN_WIDTH},${SCREEN_HEIGHT}"
 
-#export CHROME_OPTS="${CHROME_OPTS_OVERRIDE:- --user-data-dir --no-sandbox --window-position=0,0 --force-device-scale-factor=1 --disable-dev-shm-usage}"
 # 使用--remote-debugging-port必须制定默认路径外的路径： https://developer.chrome.com/blog/remote-debugging-port?hl=zh-cn
-export CHROME_OPTS="${CHROME_OPTS_OVERRIDE:- --user-data-dir=/tmp/chrome_user_data_dir --system-developer-mode --no-sandbox --mute-audio --no-first-run --test-type --ignore-certificate-errors --allow-insecure-localhost --disable-popup-blocking --disable-background-networking --disable-sync --ash-no-nudges --disable-dev-shm-usage --disable-infobars --disable-gpu --disable-popup-blocking  --no-default-browser-check --disable-application-cache --disk-cache-size=0 --remote-allow-origins=*  --remote-debugging-port=9922 --remote-debugging-address=0.0.0.0 --disable-features=PrivacySandboxSettings4,Translate  --load-extension=/proxy_extension,/reload_extensions,/singlefile_extension}"
+CHROME_OPTS_DEFAULT="--user-data-dir=/tmp/chrome_user_data_dir --system-developer-mode --no-sandbox --remote-debugging-port=9922 --remote-debugging-address=0.0.0.0 --remote-allow-origins=* --load-extension=/proxy_extension,/reload_extensions,/singlefile_extension"
+
+# 兼容旧变量 CHROME_OPTS_OVERRIDE，同时支持：
+# 1) CHROME_OPTS       完全覆盖参数
+# 2) CHROME_OPTS_EXTRA 在默认参数基础上追加
+if [[ -n "${CHROME_OPTS_OVERRIDE:-}" ]]; then
+  CHROME_OPTS="${CHROME_OPTS_OVERRIDE}"
+elif [[ -n "${CHROME_OPTS:-}" ]]; then
+  CHROME_OPTS="${CHROME_OPTS}"
+else
+  CHROME_OPTS="${CHROME_OPTS_DEFAULT}"
+fi
+
+if [[ -n "${CHROME_OPTS_EXTRA:-}" ]]; then
+  CHROME_OPTS="${CHROME_OPTS} ${CHROME_OPTS_EXTRA}"
+fi
+
+export CHROME_OPTS
 
 exec "$@"

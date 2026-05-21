@@ -76,4 +76,5 @@ services:
       SE_NODE_SESSION_TIMEOUT: 1200
       SE_SESSION_REQUEST_TIMEOUT: 15
       SE_VIDEO_RECORD_STANDALONE: "false"
+      CHROME_OPTS_EXTRA: "--mute-audio --no-first-run --test-type --ignore-certificate-errors --allow-insecure-localhost --disable-popup-blocking --disable-background-networking --disable-sync --ash-no-nudges --disable-dev-shm-usage --disable-infobars --disable-gpu --no-default-browser-check --disable-application-cache --disk-cache-size=0  --disable-features=PrivacySandboxSettings4,Translate"
     image: "weiensong/chrome-vnc-socat:latest"
