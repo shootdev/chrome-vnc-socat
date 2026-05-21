@@ -19,7 +19,7 @@
 - [chrome-extensions-reloader](https://github.com/arikw/chrome-extensions-reloader)
 
 ## 快速开始
-请检查[docker-compose.yml](./docker-compose.yml)
+请检查启动示例[docker-compose.yml](./docker-compose.yml)
 
 ### 本地构建
 
@@ -40,13 +40,12 @@ docker compose build chrome-vnc-socat-134 --no-cache
 docker compose up -d cdp
 ```
 
-`CHROME_OPTS_EXTRA`: 设置chrome启动环境变量
+`CHROME_OPTS_EXTRA`: 启动container时设置chrome启动环境变量
 
-## GitHub Action：自动构建并推送配置
+## 自动构建并推送配置请设置当前repo的Actions secrets and variables
 
 - `DOCKERHUB_USERNAME`：Docker Hub username
 - `DOCKERHUB_TOKEN`：Docker Hub Access Token
----
 
 ## 常见操作
 
