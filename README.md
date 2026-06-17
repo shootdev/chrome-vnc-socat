@@ -27,20 +27,25 @@
 > 必须在仓库根目录执行
 > 项目代码改动会触发构建并推送到dockerhub, 请检查[build-chrome-vnc-socat-134.yml](./.github/workflows/build-chrome-vnc-socat-134.yml)  
 
-> [!NOTE]
-> 网络问题请尝试使用注释换掉的源
-
 ```bash
-docker compose build chrome-vnc-socat-134 --no-cache
+sudo docker compose build chrome-vnc-socat-134 --no-cache
+```
+
+使用镜像构建
+```bash
+sudo docker compose build --build-arg is_mirror=true chrome-vnc-socat-134 --no-cache
 ```
 
 ### 本地运行
 
 ```bash
-docker compose up -d cdp
+sudo docker compose up -d cdp
 ```
 
-`CHROME_OPTS_EXTRA`: 启动container时设置chrome启动环境变量
+> [!NOTE]
+> `CHROME_OPTS_EXTRA`: 启动container时设置chrome启动环境变量
+
+
 
 ## 自动构建并推送配置请设置当前repo的Actions secrets and variables
 
@@ -52,19 +57,19 @@ docker compose up -d cdp
 ### 拉取镜像
 
 ```bash
-docker pull weiensong/chrome-vnc-socat:latest
+sudo docker pull weiensong/chrome-vnc-socat:latest
 ```
 
 ### 查看容器日志
 
 ```bash
-docker logs -f cdp
+sudo docker logs -f cdp
 ```
 
 ### 进入容器
 
 ```bash
-docker exec -it cdp /bin/bash
+sudo docker exec -it cdp /bin/bash
 ```
 
 ### 使用noVNC查看
@@ -73,10 +78,10 @@ docker exec -it cdp /bin/bash
 
 ## 注意事项
 > [!TIP]
-> `chrome-vnc-socat-134/Dockerfile` 使用了仓库内 `copyables/` 的资源，构建上下文必须是仓库根目录 `.`。  
-> GitHub Action 也使用 `context: .`，与本地构建保持一致，避免因上下文错误导致 `COPY` 失败。  
-> 如果你更新了 Chrome 安装包或相关脚本，工作流会自动触发重新构建。  
-> 首次推送前请确认 Docker Hub 仓库已创建，且 Token 具备推送权限。  
+> - 使用了仓库内 `copyables/` 的资源，构建上下文必须是仓库根目录 `.`
+> - GitHub Action 也使用 `context: .`，与本地构建保持一致，避免因上下文错误导致 `COPY` 失败
+> - 如果你更新了 Chrome 安装包或相关脚本，工作流会自动触发重新构建
+> - 首次推送前请确认 Docker Hub 仓库已创建，且 Token 具备推送权限
 
 
 ## 许可证
