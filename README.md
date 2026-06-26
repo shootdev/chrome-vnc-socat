@@ -80,7 +80,7 @@ sudo docker exec -it cdp /bin/bash
 > [!TIP]
 > - 使用了仓库内 `copyables/` 的资源，构建上下文必须是仓库根目录 `.`
 > - GitHub Action 也使用 `context: .`，与本地构建保持一致，避免因上下文错误导致 `COPY` 失败
-> - 如果你更新了 Chrome 安装包或相关脚本，工作流会自动触发重新构建
+> - 如果你更新了 Chrome 安装包或相关脚本，工作流会自动触发重新构建并上传dockerhub, 如有需要可改为推送tag再构建上传  
 > - 首次推送前请确认 Docker Hub 仓库已创建，且 Token 具备推送权限
 
 
