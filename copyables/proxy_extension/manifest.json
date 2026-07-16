@@ -1,21 +1,21 @@
 {
     "version": "1.0.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "name": "Chrome Proxy",
     "permissions": [
         "proxy",
-        "tabs",
-        "unlimitedStorage",
-        "storage",
-        "<all_urls>",
         "webRequest",
-        "webRequestBlocking"
+        "webRequestAuthProvider"
+    ],
+    "host_permissions": [
+        "<all_urls>"
     ],
     "background": {
-        "scripts": ["background.js"]
+        "service_worker": "background.js"
     },
-    "browser_action": {
+    "action": {
+        "default_title": "Chrome Proxy",
         "default_popup": "popup.html"
     },
-    "minimum_chrome_version": "22.0.0"
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAta7sTiox2HDCVXIgchWQzh3Y0YaZUzPWowa7UTSvoJKSwXYkKFO9p/fmG7ESY2j41eB6HRuL8mU8m+WxCEJsBHa3cETjaUb1Uql45OgbksmehoYNsxFa3rqYEr9zxbdrsl/NGlxpK7cERgFwVB3ay3diAZ1bZ5lkdu2Dig9pNy6Yy40YRbnRt+B/I/f2J/eoCGNUbsYDNIl0hDaMCEeXohBoSiofux0YPP3ybtFPusua8gO/Cjn8hTxIXltxax+wiJleGGWRt7HilhKE4/i+SZibM99zAJFxs9ivGHsdLfyfAFkJ1Tf3eFHlOtsSwX2k8cv/52ApVsV5ttTd6EHA+QIDAQAB"
 }
