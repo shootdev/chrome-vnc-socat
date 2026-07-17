@@ -4,9 +4,9 @@
 
 本仓库包含多个镜像版本，其中重点是：
 
-- chrome-vnc-socat-134: 固定版本Chrome版本134.0.6998.88的构建, 当前主要维护
-- chrome-vnc-socat-latest: 偏向最新版本的构建
-- chrome-only: 仅安装 Chrome 的最小镜像
+- [chrome-vnc-socat-134](./chrome-vnc-socat-134/): 固定版本Chrome版本134.0.6998.88的构建, 当前主要维护
+- [chrome-vnc-socat-latest](./chrome-vnc-socat-latest/): 偏向最新版本的构建
+- [chrome-only](./chrome-only/): 仅安装 Chrome 的最小镜像
 
 镜像包含:
 - [supervisor](https://github.com/Supervisor/supervisor)
@@ -31,13 +31,13 @@
 sudo docker compose build chrome-vnc-socat-134 --no-cache
 ```
 
-使用镜像构建
+使用国内可访问镜像构建
 ```bash
 sudo docker compose build --build-arg is_mirror=true chrome-vnc-socat-134 --no-cache
 ```
 
 ### 本地运行
-
+本地运行一个容器
 ```bash
 sudo docker compose up -d cdp
 ```
