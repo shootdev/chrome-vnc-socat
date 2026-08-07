@@ -22,6 +22,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
         x11vnc \
         fluxbox \
         eterm \
+        libzbar0 \
         socat \
         vim \
         git \

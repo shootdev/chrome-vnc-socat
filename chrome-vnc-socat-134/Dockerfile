@@ -24,6 +24,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
     x11vnc \
     fluxbox \
     eterm \
+    libzbar0 \
     socat \
     vim \
     git \
@@ -88,4 +89,3 @@ EXPOSE 5900 8900
 ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-
